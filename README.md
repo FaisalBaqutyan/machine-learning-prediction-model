@@ -103,7 +103,53 @@ duplicates = data.duplicated().sum()
 data = data.drop_duplicates()
 ```
 
-## Data analysis
+## Model building
+
+first, I will separate the features and target, the survived column is the target while the other variables are the features.
+
+```
+X = data.drop(columns = ['Survived'], axis=1)
+y = data['Survived']
+```
+
+then to split the data into training data and testing data i will use 
+
+```
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2)
+```
+
+
+to train the model I used 
+
+```
+from sklearn.linear_model import LogisticRegression
+
+# Create a Logistic Regression model and Train it on the training data:
+model = LogisticRegression(max_iter=500)  
+model.fit(X_train, y_train)
+```
+
+in the model evaluation first I will let the model predict X_test then I will use the accuracy score to see the accuracy of the model and finally I will print the accuracy  
+
+
+```
+from sklearn.metrics import accuracy_score
+
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print('Accuracy:', accuracy)
+```
+
+and the accuracy will be 
+
+![image](https://github.com/user-attachments/assets/fe6771d4-8d31-44ef-889e-8320ea3c05a3)
+
+
+
+
+
+
 
 
 
